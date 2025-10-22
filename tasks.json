@@ -1,0 +1,47 @@
+[
+    {
+        "task": "làm báo cáo thầy Bảo",
+        "stress": 5,
+        "deadline": "2025-10-26",
+        "hours": 3,
+        "completed": true,
+        "id": "68f857704f91a"
+    },
+    {
+        "task": "học lại môn quản lý dự án phần mềm",
+        "stress": 9,
+        "deadline": "2025-11-06",
+        "hours": 15,
+        "id": "68f857704f92c"
+    },
+    {
+        "task": " học trắc nghiệm môn app",
+        "stress": 10,
+        "hours": 35,
+        "deadline": "2025-11-13",
+        "id": "68f857704f92e"
+    },
+    {
+        "task": "học trắc nghiệm môn web",
+        "stress": 8,
+        "hours": 30,
+        "deadline": "2026-01-11",
+        "id": "68f857704f92f"
+    },
+    {
+        "task": "học tiếng Nhật",
+        "stress": 6,
+        "hours": 10,
+        "deadline": "2025-10-25",
+        "note": "Học 118 động từ\r\n",
+        "id": "68f857704f930"
+    },
+    {
+        "task": "lập stress level chart",
+        "stress": 6,
+        "hours": 2,
+        "deadline": "2025-10-22",
+        "note": "",
+        "id": "68f857704f931"
+    }
+]
