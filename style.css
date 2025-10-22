@@ -1,8 +1,10 @@
+/* ------------------ Global ------------------ */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
+    background: #f0f4f8;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 .container {
@@ -11,11 +13,76 @@ body {
     padding: 20px;
 }
 
-header h1 {
-    text-align: center;
-    color: #333;
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
+header h1 {
+    font-size: 24px;
+    color: #222;
+}
+
+/* Header buttons container */
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Nút đăng xuất */
+.btn-logout {
+    background: #dc3545;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+}
+
+/* Nút xem lịch */
+.btn-view-schedule {
+    background: #28a745;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-view-schedule:hover {
+    background: #218838;
+}
+
+/* Nếu muốn, các nút trong header cũng có shadow nhẹ */
+.header-actions a {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.header-actions a:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-view-schedule {
+    background: #28a745;
+    color: #fff;
+}
+
+.btn-view-schedule:hover {
+    background: #218838;
+}
+
+/* ------------------ Main grid ------------------ */
 .main-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -23,11 +90,18 @@ header h1 {
     margin-top: 20px;
 }
 
+/* ------------------ Card ------------------ */
 .card {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
 .card h2 {
@@ -35,36 +109,48 @@ header h1 {
     color: #444;
 }
 
+/* ------------------ Form ------------------ */
 form label {
     display: block;
     margin: 10px 0 5px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 form input[type="text"],
 form input[type="number"],
-form input[type="date"] {
+form input[type="date"],
+form textarea {
     width: 100%;
-    padding: 8px 10px;
+    padding: 10px 12px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #007bff;
+    outline: none;
 }
 
 form input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 form input[type="submit"]:hover {
-    background-color: #0056b3;
+    background: linear-gradient(45deg, #0056b3, #003f7f);
 }
 
-/* Task list */
+/* ------------------ Task list ------------------ */
 .task-list {
     display: flex;
     flex-direction: column;
@@ -72,55 +158,45 @@ form input[type="submit"]:hover {
 }
 
 .task-card {
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 6px;
-    transition: transform 0.2s;
+    background-color: #f8f9fa;
+    padding: 15px 18px;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .task-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .task-card h3 {
     margin: 0 0 5px;
+    font-size: 16px;
+}
+
+.task-note {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
 }
 
 .task-actions {
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .task-actions a {
-    margin-right: 10px;
+    margin-right: 12px;
     color: #007bff;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .task-actions a:hover {
     text-decoration: underline;
 }
 
-/* Footer */
-footer {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.view-schedule-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.view-schedule-btn:hover {
-    background-color: #218838;
-}
-
+/* ------------------ Schedule grid ------------------ */
 .schedule-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -130,18 +206,24 @@ footer {
 
 .day-card {
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 15px;
     display: flex;
     flex-direction: column;
+    transition: 0.3s;
+}
+
+.day-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 .day-header {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
     margin-bottom: 10px;
-    color: #444;
+    color: #222;
 }
 
 .tasks {
@@ -151,9 +233,10 @@ footer {
 }
 
 .task {
-    padding: 8px;
-    border-radius: 6px;
+    padding: 10px;
+    border-radius: 8px;
     color: #333;
+    transition: 0.2s;
 }
 
 .task-name {
@@ -161,11 +244,11 @@ footer {
 }
 
 .task-info {
-    font-size: 12px;
+    font-size: 13px;
     color: #555;
 }
 
-/* Màu task theo stress */
+/* Task stress colors */
 .task-low {
     background-color: #d4edda;
     /* xanh nhạt */
@@ -181,13 +264,19 @@ footer {
     /* đỏ nhạt */
 }
 
+.task-completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
 .day-summary {
-    margin-top: 10px;
+    margin-top: 12px;
     font-weight: bold;
     font-size: 14px;
     color: #333;
 }
 
+/* ------------------ Footer ------------------ */
 .footer {
     text-align: center;
     margin-top: 30px;
@@ -198,21 +287,117 @@ footer {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
-    border-radius: 6px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.2s;
 }
 
 .btn:hover {
     background-color: #0056b3;
 }
-.task-note {
-    font-size: 12px;
-    color: #555;
-    margin-top: 4px;
-    font-style: italic;
+/* ------------------ Login/Register ------------------ */
+.auth-container {
+    max-width: 400px;
+    margin: 60px auto;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
-.task-completed {
-    text-decoration: line-through;
-    opacity: 0.6;
+
+.auth-container h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #222;
+    margin-bottom: 25px;
+}
+
+.auth-container form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+}
+
+.auth-container form input[type="text"],
+.auth-container form input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.auth-container form input[type="text"]:focus,
+.auth-container form input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.auth-container form input[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.auth-container form input[type="submit"]:hover {
+    background: linear-gradient(45deg, #0056b3, #003f7f);
+}
+
+.auth-container p.message {
+    text-align: center;
+    color: #dc3545;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.auth-container p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-container a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+.no-tasks {
+    text-align: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: 20px auto;
+}
+
+.no-tasks-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.no-tasks h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.no-tasks p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
 }

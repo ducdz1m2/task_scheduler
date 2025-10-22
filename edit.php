@@ -1,18 +1,36 @@
 <?php
-if (!isset($_GET['index'])) exit("Không xác định task.");
+require 'db.php'; // 🔹 kết nối DB
 
-$index = intval($_GET['index']);
-$tasks = json_decode(file_get_contents('tasks.json'), true);
-$task = $tasks[$index];
+if (!isset($_GET['id'])) exit("Không xác định task.");
 
+$id = intval($_GET['id']);
+
+// Lấy task từ DB
+$stmt = $conn->prepare("SELECT * FROM tasks WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+$task = $result->fetch_assoc();
+
+if (!$task) {
+    exit("Không tìm thấy task.");
+}
+
+// Nếu người dùng bấm "Lưu thay đổi"
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $tasks[$index]['task'] = $_POST['task'];
-    $tasks[$index]['stress'] = intval($_POST['stress']);
-    $tasks[$index]['deadline'] = $_POST['deadline'];
-    $tasks[$index]['hours'] = intval($_POST['hours']);
-    $tasks[$index]['note'] = $_POST['note'];
+    $stmt = $conn->prepare("UPDATE tasks SET task=?, stress=?, hours=?, start_date=?, deadline=?, note=? WHERE id=?");
+    $stmt->bind_param(
+        "sissssi",
+        $_POST['task'],       // s
+        $_POST['stress'],     // i
+        $_POST['hours'],      // i
+        $_POST['start_date'], // s
+        $_POST['deadline'],   // s
+        $_POST['note'],       // s
+        $id                   // i
+    );
+    $stmt->execute();
 
-    file_put_contents('tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
     header('Location: index.php');
     exit();
 }
@@ -40,11 +58,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Số giờ để hoàn thành:</label>
                 <input type="number" name="hours" min="1" value="<?php echo $task['hours']; ?>" required>
 
+                <label>Ngày bắt đầu:</label>
+                <input type="date" name="start_date" value="<?php echo $task['start_date']; ?>" required>
+
                 <label>Deadline:</label>
                 <input type="date" name="deadline" value="<?php echo $task['deadline']; ?>" required>
+
                 <label>Ghi chú:</label>
                 <textarea name="note" rows="3"><?php echo htmlspecialchars($task['note'] ?? ''); ?></textarea>
-
 
                 <input type="submit" value="Lưu thay đổi">
             </form>

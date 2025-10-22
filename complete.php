@@ -1,15 +1,10 @@
 <?php
-if (!isset($_GET['date']) || !isset($_GET['task_index'])) exit("Không xác định task.");
+require 'db.php';
 
-$date = $_GET['date'];
-$task_index = intval($_GET['task_index']);
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+    $conn->query("UPDATE tasks SET done = 1 WHERE id = $id");
+}
 
-// Lấy task_schedule từ JSON cache nếu có, hoặc từ PHP session
-// Đơn giản: lưu task_schedule tạm trong session
-session_start();
-if (!isset($_SESSION['task_schedule'][$date][$task_index])) exit("Task không tồn tại");
-
-$_SESSION['task_schedule'][$date][$task_index]['done_today'] = true;
-
-header('Location: scheduler.php');
+header('Location: index.php');
 exit();
